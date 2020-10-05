@@ -21,7 +21,7 @@ class Model:
 
 
     movies = DataHandler().get_data()
-    titles = DataHandler().get_data()['title']
+    titles = movies['title']
     indices = pd.Series(movies.index, index=movies['title'])
     vectors = create_feature_vectors(None, movies)
     similarities = compute_similarity(None, vectors)
@@ -31,10 +31,10 @@ class Model:
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         sim_scores = sim_scores[1:21]
         movie_indices = [i[0] for i in sim_scores]
+        movies = self.titles.iloc[movie_indices]
+        # convert ndarray to list for being serialized for rest api
+        movies = movies.values.tolist()
+        return movies
 
-        return self.titles.iloc[movie_indices]
 
 
-model = Model()
-recommends = model.genre_recommendation('Good Will Hunting (1997)').head(20)
-print(recommends)
