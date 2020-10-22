@@ -19,14 +19,17 @@ class Model:
 
         return cosine_sim
 
-
     movies = DataHandler().get_data()
     titles = movies['title']
-    indices = pd.Series(movies.index, index=movies['title'])
+    indices = pd.Series(movies.index, index=movies['new-title'])
     vectors = create_feature_vectors(None, movies)
-    similarities = compute_similarity(None, vectors)
+    similarities = compute_similarity(None, vectors) 
+
     def genre_recommendation(self, title):
-        index = self.indices[title]
+        try:
+            index = self.indices[title]
+        except KeyError:
+            raise Exception("MovieNotFound")
         sim_scores = list(enumerate(self.similarities[index]))
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         sim_scores = sim_scores[1:21]

@@ -4,7 +4,7 @@ from flask_cors import CORS
 from model import Model
 
 
-app = flask.Flask(__name__)
+movie_recommender = flask.Flask(__name__)
 CORS(app)
 
 BASE_PATH = "/movie-recommender"
@@ -20,11 +20,9 @@ def get_recommended_movies():
         favorite_movie = params.get("your_movie")
         data["response"] = Model().genre_recommendation(favorite_movie)
         data["success"] = True
-    print(favorite_movie)
-    print(data)
 
     return flask.jsonify(data)
 
 
 
-app.run(host='127.0.0.1')
+movie_recommender.run(host='127.0.0.1')

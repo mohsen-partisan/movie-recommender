@@ -3,22 +3,23 @@ class MovieRecommender {
         var similarMoviesResponse = await fetch(`http://127.0.0.1:5000/movie-recommender/recommended-movies?your_movie=${movie_name}`);
 
         var similarMovies = await similarMoviesResponse.json();
-        var moviesList = similarMovies.response;
+        if (similarMovies.response === 'Movie Not Found') {
+            new UI().showAlert('Movie Not Found in DataBase!', 'alert alert-danger');
+            new UI().clearProfile();
+        } else {
+            var moviesList = similarMovies.response;
+            console.log(moviesList);
 
-        var allMovieInfo = [];
-        for (var i = 0; i <= 4; i++) {
-            var titleAndYear = await this.getMovieNameAndYear(moviesList[i]);
-            var response = await fetch(`http://omdbapi.com/?apikey=f0c755f5&t=${titleAndYear[0]}&y=${titleAndYear[1]}`);
-            console.log(response);
-            var movieInfo = await response.json();
-            allMovieInfo.push(movieInfo);
+            var allMovieInfo = [];
+            for (var i = 0; i <= 4; i++) {
+                var titleAndYear = await this.getMovieNameAndYear(moviesList[i]);
+                var response = await fetch(`http://omdbapi.com/?apikey=f0c755f5&t=${titleAndYear[0]}&y=${titleAndYear[1]}`);
+                var movieInfo = await response.json();
+                allMovieInfo.push(movieInfo);
+            }
+
+            return { allMovieInfo };
         }
-
-        console.log('hello', allMovieInfo);
-
-        return {
-            allMovieInfo
-        };
     }
 
     async getMovieNameAndYear(movie_name) {

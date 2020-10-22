@@ -3,21 +3,18 @@ const searchUser = document.getElementById('searchUser');
 const movieRecommender = new MovieRecommender();
 const ui = new UI();
 searchUser.addEventListener('keyup', e => {
-    const movieName = e.target.value;
+    var movieName = e.target.value;
     if (e.keyCode === 13) {
         if (movieName !== '') {
+            movieName = movieName.replace(/[^0-9A-Z]+/gi, '');
+            movieName = movieName.toLowerCase();
             movieRecommender.getMovies(movieName).then(data => {
-                var posters = [];
+                var movieInfos = [];
                 for (var i = 0; i <= 4; i++) {
-                    if (data.allMovieInfo[i].Poster === 'N/A') {
-                        // Show Alert
-                        ui.showAlert('Movie Poster Not Found!', 'alert alert-danger');
-                    } else {
-                        console.log(data.allMovieInfo[i].Poster);
-                        posters.push(data.allMovieInfo[i].Poster);
-                        ui.showUserProfile(posters);
-                    }
+                    console.log(data.allMovieInfo[i]);
+                    movieInfos.push(data.allMovieInfo[i]);
                 }
+                ui.showUserProfile(movieInfos);
             });
         } else {
             ui.clearProfile();

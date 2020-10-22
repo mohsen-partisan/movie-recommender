@@ -1,5 +1,6 @@
 
 import pandas as pd
+import numpy as np
 import os
 
 MOVIELENS_DIR = 'data/'
@@ -18,11 +19,16 @@ class DataHandler:
                              names=['movie_id', 'title', 'genres'])
         print(len(movies), 'descriptions of', 'movies loaded.')
 
+        movies['new-title'] = np.nan
+
+        movies['new-title'] = movies['title'].astype(str).replace('[^0-9a-zA-Z]', '', regex=True)
+        movies['new-title'] = movies['new-title'].str.lower()
+
         # Save into movies.csv
         movies.to_csv(MOVIELENS_DIR + MOVIES_CSV_FILE,
                       sep='\t',
                       header=True,
-                      columns=['movie_id', 'title', 'genres'])
+                      columns=['movie_id', 'title','new-title', 'genres'])
         print('Saved to', MOVIELENS_DIR + MOVIES_CSV_FILE)
 
     def get_data(self):
