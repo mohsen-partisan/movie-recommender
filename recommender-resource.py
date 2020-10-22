@@ -4,10 +4,14 @@ from flask_cors import CORS
 from model import Model
 
 
-movie_recommender = flask.Flask(__name__)
+movie_recommender = flask.Flask(__name__, static_folder='./ui', static_url_path='/')
 CORS(app)
 
 BASE_PATH = "/movie-recommender"
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 @app.route(BASE_PATH + "/recommended-movies", methods=["GET", "POST"])
 def get_recommended_movies():
