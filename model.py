@@ -29,7 +29,7 @@ class Model:
         try:
             index = self.indices[title]
         except KeyError:
-            raise Exception("MovieNotFound")
+            return("Movie Not Found")
         sim_scores = list(enumerate(self.similarities[index]))
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         sim_scores = sim_scores[1:21]
