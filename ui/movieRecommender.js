@@ -1,7 +1,7 @@
 class MovieRecommender {
     async getMovies(movie_name) {
         var similarMoviesResponse = await fetch(
-            `http://smart-movie-recommender.herokuapp.com/movie-recommender/recommended-movies?your_movie=${movie_name}`
+            `https://smart-movie-recommender.herokuapp.com/movie-recommender/recommended-movies?your_movie=${movie_name}`
         );
 
         var similarMovies = await similarMoviesResponse.json();
