@@ -12,7 +12,7 @@ BASE_PATH = "/movie-recommender"
 
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    return flask.render_template('index.html')
 
 @app.route(BASE_PATH + "/recommended-movies", methods=["GET", "POST"])
 def get_recommended_movies():
