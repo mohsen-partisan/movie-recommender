@@ -1,6 +1,8 @@
 class MovieRecommender {
     async getMovies(movie_name) {
-        var similarMoviesResponse = await fetch(`https://0.0.0.0:5000/movie-recommender/recommended-movies?your_movie=${movie_name}`);
+        var similarMoviesResponse = await fetch(
+            `http://smart-movie-recommender.herokuapp.com/movie-recommender/recommended-movies?your_movie=${movie_name}`
+        );
 
         var similarMovies = await similarMoviesResponse.json();
         if (similarMovies.response === 'Movie Not Found') {
