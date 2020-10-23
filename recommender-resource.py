@@ -5,7 +5,7 @@ from model import Model
 import os 
 
 
-app = flask.Flask(__name__, static_folder='./ui', static_url_path='/')
+app = flask.Flask(__name__, static_folder='./static', static_url_path='/static')
 CORS(app)
 
 BASE_PATH = "/movie-recommender"
