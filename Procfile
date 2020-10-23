@@ -1,2 +1,2 @@
-web: gunicorn recommender-resource:app
+web: gunicorn --bind 0.0.0.0:$PORT recommender-resource:app
 
