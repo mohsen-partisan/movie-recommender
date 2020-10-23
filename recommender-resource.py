@@ -2,9 +2,10 @@
 import flask
 from flask_cors import CORS
 from model import Model
+import os 
 
 
-movie_recommender = flask.Flask(__name__, static_folder='./ui', static_url_path='/')
+app = flask.Flask(__name__, static_folder='./ui', static_url_path='/')
 CORS(app)
 
 BASE_PATH = "/movie-recommender"
@@ -29,4 +30,5 @@ def get_recommended_movies():
 
 
 
-movie_recommender.run(host='127.0.0.1')
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 80))
