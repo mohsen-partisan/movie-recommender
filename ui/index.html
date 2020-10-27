@@ -22,11 +22,16 @@
             padding: 0 4px;
         }
 
-        .column img {
-            /* margin-top: 8px; */
-            /* width: 600px; */
+        .container {
+            text-align: center;
+        }
 
+        .navbar-brand {
+            margin: 0 auto;
+        }
 
+        footer {
+            text-align: center;
         }
     </style>
 </head>
@@ -42,7 +47,8 @@
         <div class="search card card-body">
             <h1>Enter Your Favorite Movie</h1>
             <p class="lead">Enter a movie to recommend you similar movies</p>
-            <input type="text" id="searchUser" class="form-control" placeholder="Movie Name... ">
+            <input type="text" id="searchUser" class="form-control"
+                placeholder="Movie name must contain 'name' and 'year'. for example: gravity 2013 ">
         </div>
         <br>
         <div class="grid" id="profile"></div>

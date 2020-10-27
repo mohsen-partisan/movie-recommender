@@ -10,8 +10,7 @@ searchUser.addEventListener('keyup', e => {
             movieName = movieName.toLowerCase();
             movieRecommender.getMovies(movieName).then(data => {
                 var movieInfos = [];
-                for (var i = 0; i <= 4; i++) {
-                    console.log(data.allMovieInfo[i]);
+                for (var i = 0; i <= 9; i++) {
                     movieInfos.push(data.allMovieInfo[i]);
                 }
                 ui.showUserProfile(movieInfos);

@@ -4,21 +4,14 @@ import numpy as np
 import os
 
 MOVIELENS_DIR = 'data/'
-MOVIE_DATA_FILE = 'movies.dat'
-MOVIES_CSV_FILE = 'movies.csv'
+MOVIES_CSV_FILE = 'movies-2019.csv'
 
 
 class DataHandler:
 
-    def create_csv_from_dat_file(self):
-        # Read the Movies File
-        movies = pd.read_csv(os.path.join(MOVIELENS_DIR, MOVIE_DATA_FILE),
-                             sep='::',
-                             engine='python',
-                             encoding='latin-1',
-                             names=['movie_id', 'title', 'genres'])
-        print(len(movies), 'descriptions of', 'movies loaded.')
-
+    def manipulate_data_file(self):
+        movies = pd.read_csv(MOVIELENS_DIR + MOVIES_CSV_FILE, sep=',')
+        # create new column from title column for better user search experience
         movies['new-title'] = np.nan
 
         movies['new-title'] = movies['title'].astype(str).replace('[^0-9a-zA-Z]', '', regex=True)
@@ -32,10 +25,9 @@ class DataHandler:
         print('Saved to', MOVIELENS_DIR + MOVIES_CSV_FILE)
 
     def get_data(self):
-        data = pd.read_csv(MOVIELENS_DIR + MOVIES_CSV_FILE, sep='\t')
+        data = pd.read_csv(MOVIELENS_DIR + MOVIES_CSV_FILE, sep=',')
 
         return data
 
 
 data = DataHandler()
-data.create_csv_from_dat_file()

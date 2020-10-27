@@ -8,27 +8,20 @@ class UI {
            
 
         <div class="row">
-            <div class="column">
-                
-                
+            <div class="column">               
                 ${this.createTable(movieInfos[0])}
-                ${this.createTable(movieInfos[1])}
                 ${this.createTable(movieInfos[2])}
-                
-                    
-                 
-            </div>
+                ${this.createTable(movieInfos[4])}
+                ${this.createTable(movieInfos[6])}
+                ${this.createTable(movieInfos[8])}
+                </div>
 
             <div class="column">
-                
-                    
-                ${this.createTable(movieInfos[3])}
-                <div>
-                    
-                    ${this.createTable(movieInfos[4])}
-                </div>
-            
-
+            ${this.createTable(movieInfos[1])}
+            ${this.createTable(movieInfos[3])}
+            ${this.createTable(movieInfos[5])}
+            ${this.createTable(movieInfos[7])}
+            ${this.createTable(movieInfos[9])}
             </div>
 
         </div>
@@ -40,54 +33,55 @@ class UI {
                     
                     
                     <table style="width:auto; margin-top:4px; border:1px solid black">
+                        
                         <tr>
                             <th>Poster: </th>
                             <th><img class="img-fluid mb-2" src="${movieInfo.Poster}" alt='Image Not Found!'></th> 
                         </tr>
-
+\
                         <tr>
-                            <th>Information</th>
-                            <th>Description</th> 
+                            <th><hr><b>Information</b></th>
+                            <th><hr>Description</th> 
                         </tr>
                         <tr>
-                            <td>Name</td>
-                            <td>${movieInfo.Title}</td>
+                            <td><hr><b>Name</b></td>
+                            <td><hr>${movieInfo.Title}</td>
                         </tr>
                         <tr>
-                            <td>Actors</td>
-                            <td>${movieInfo.Actors}</td>
+                            <td><hr><b>Actors</b></td>
+                            <td><hr>${movieInfo.Actors}</td>
                         </tr>
                         <tr>
-                            <td>Director</td>
-                            <td>${movieInfo.Director}</td>
+                            <td><hr><b>Director</b></td>
+                            <td><hr>${movieInfo.Director}</td>
                         </tr>
                         <tr>
-                            <td>Country</td>
-                            <td>${movieInfo.Country}</td>
+                            <td><hr><b>Country</b></td>
+                            <td><hr>${movieInfo.Country}</td>
                         </tr>
                         <tr>
-                            <td>Year</td>
-                            <td>${movieInfo.Year}</td>
+                            <td><hr><b>Year</b></td>
+                            <td><hr>${movieInfo.Year}</td>
                         </tr>
                         <tr>
-                            <td>Summary</td>
-                            <td>${movieInfo.Plot}</td>
+                            <td><b>Summary</b></td>
+                            <td style="text-align:left"><hr>${movieInfo.Plot}</td>
                         </tr>
                         <tr>
-                            <td>Awards</td>
-                            <td>${movieInfo.Awards}</td>
+                            <td><hr><b>Awards</b></td>
+                            <td><hr>${movieInfo.Awards}</td>
                         </tr>
                         <tr>
-                            <td>Box Office</td>
-                            <td>${movieInfo.BoxOffice}</td>
+                            <td><hr><b>Box Office</b></td>
+                            <td><hr>${movieInfo.BoxOffice}</td>
                         </tr>
                         <tr>
-                            <td>IMDB</td>
-                            <td>${movieInfo.imdbRating}</td>
+                            <td><hr><b>IMDB</b></td>
+                            <td><hr>${movieInfo.imdbRating}</td>
                         </tr>
                         <tr>
-                            <td>Meta Score</td>
-                            <td>${movieInfo.Metascore}</td>
+                            <td><hr><b>Meta Score</b></td>
+                            <td><hr>${movieInfo.Metascore}</td>
                         </tr>
                     </table>
 

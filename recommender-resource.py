@@ -1,7 +1,7 @@
 
 import flask
 from flask_cors import CORS
-from model import Model
+import model
 import os 
 
 
@@ -23,11 +23,11 @@ def get_recommended_movies():
 
     if (params != None):
         favorite_movie = params.get("your_movie")
-        data["response"] = Model().genre_recommendation(favorite_movie)
+        data["response"] = model.genre_recommendation(favorite_movie)
         data["success"] = True
 
     return flask.jsonify(data)
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=False, port=os.environ.get('PORT', 5000))
+    app.run(host='127.0.0.1', debug=False, port=os.environ.get('PORT', 5000))

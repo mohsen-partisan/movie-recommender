@@ -1,5 +1,6 @@
 
 import pandas as pd
+import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from data_handler import DataHandler
@@ -14,30 +15,37 @@ class Model:
 
         return vectors
 
-    def compute_similarity(self, vectors):
-        cosine_sim = linear_kernel(vectors, vectors)
+    def compute_similarity(self, movie_index, matrix):
+        cosine_similarity = linear_kernel(matrix[movie_index], matrix)
 
-        return cosine_sim
+        return cosine_similarity
 
-    movies = DataHandler().get_data()
-    titles = movies['title']
-    indices = pd.Series(movies.index, index=movies['new-title'])
-    vectors = create_feature_vectors(None, movies)
-    similarities = compute_similarity(None, vectors) 
+movies = DataHandler().get_data()
+model = Model()
+titles = movies['title']
+indices = pd.Series(movies.index, index=movies['new-title'])
+matrix = model.create_feature_vectors(movies)
 
-    def genre_recommendation(self, title):
-        try:
-            index = self.indices[title]
-        except KeyError:
-            return("Movie Not Found")
-        sim_scores = list(enumerate(self.similarities[index]))
-        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-        sim_scores = sim_scores[1:21]
-        movie_indices = [i[0] for i in sim_scores]
-        movies = self.titles.iloc[movie_indices]
-        # convert ndarray to list for being serialized for rest api
-        movies = movies.values.tolist()
-        return movies
+def genre_recommendation(title):
+    try:
+        movie_index = indices[title]
+    except KeyError:
+        return ("Movie Not Found")
+    similarity_scores = model.compute_similarity(movie_index, matrix)
+    # sort movies from high similar to low
+    sorted_similarity_scores = np.argsort(-similarity_scores)
+    # select just 20 first high similar movies
+    recommend_ids = sorted_similarity_scores[0][0:21]
+    # remove query movie from similar movoes list if exists in it
+    index = np.argwhere(recommend_ids == movie_index)
+    recommend_ids = np.delete(recommend_ids, index)
+
+    recommend_movies = titles.iloc[recommend_ids]
+
+    # convert ndarray to list for being serialized for rest api
+    return recommend_movies.values.tolist()
+
+
 
 
 

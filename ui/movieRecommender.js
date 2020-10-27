@@ -1,8 +1,6 @@
 class MovieRecommender {
     async getMovies(movie_name) {
-        var similarMoviesResponse = await fetch(
-            `https://smart-movie-recommender.herokuapp.com/movie-recommender/recommended-movies?your_movie=${movie_name}`
-        );
+        var similarMoviesResponse = await fetch(`http://127.0.0.1:5000/movie-recommender/recommended-movies?your_movie=${movie_name}`);
 
         var similarMovies = await similarMoviesResponse.json();
         if (similarMovies.response === 'Movie Not Found') {
@@ -10,9 +8,10 @@ class MovieRecommender {
             new UI().clearProfile();
         } else {
             var moviesList = similarMovies.response;
+            console.log(moviesList);
 
             var allMovieInfo = [];
-            for (var i = 0; i <= 4; i++) {
+            for (var i = 0; i <= 9; i++) {
                 var titleAndYear = await this.getMovieNameAndYear(moviesList[i]);
                 var response = await fetch(`http://omdbapi.com/?apikey=f0c755f5&t=${titleAndYear[0]}&y=${titleAndYear[1]}`);
                 var movieInfo = await response.json();
