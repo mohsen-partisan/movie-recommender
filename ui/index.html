@@ -33,6 +33,12 @@
         footer {
             text-align: center;
         }
+
+        #btn {
+            width: 10rem;
+            height: 3rem;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -49,6 +55,7 @@
             <p class="lead">Enter a movie to recommend you similar movies</p>
             <input type="text" id="searchUser" class="form-control"
                 placeholder="Movie name must contain 'name' and 'year'. for example: gravity 2013 ">
+            <button type="button" class="mt-3 btn btn-outline-primary" id="btn">Recommend Me!</button>
         </div>
         <br>
         <div class="grid" id="profile"></div>
