@@ -11,7 +11,10 @@ I used MovieLens 25M Dataset for this project. about 62000 movies until 12/2019 
 Project can be accessed here: 
 
 
+
 [https://smart-movie-recommender.herokuapp.com](https://smart-movie-recommender.herokuapp.com)
+
+
 
 
 ![Alt text](/img/recommender.png?raw=true "Recommender: ")
