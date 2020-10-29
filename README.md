@@ -4,7 +4,7 @@ In this project I used content based recommendation method for recommend similar
 
 Project can be accessed here: 
 
-[a link](https://smart-movie-recommender.herokuapp.com)
+[https://smart-movie-recommender.herokuapp.com](https://smart-movie-recommender.herokuapp.com)
 
 ![Alt text](/img/recommender.png?raw=true "Recommender: ")
 
