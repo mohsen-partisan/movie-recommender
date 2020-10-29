@@ -10,7 +10,9 @@ Project can be accessed here:
 
 For test project offline:
 
-be sure to have all libraries installed in requirements.txt
+1- be sure to have all libraries installed in requirements.txt
 
-run recommender-resource.py and open index.html
+2- run recommender-resource.py (this run backend as a flask app)
+
+3- open index.html
 
